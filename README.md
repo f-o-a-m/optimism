@@ -1,3 +1,5 @@
+**NOTE:** _this is a fork with some changes to aid in deploying FOAM development networks! The `develop` branch should be up to date and unchanged, and all changes should be made in the `foam` branch._
+
 <div align="center">
   <br />
   <br />
