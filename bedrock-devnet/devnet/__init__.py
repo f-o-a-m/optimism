@@ -139,6 +139,8 @@ def devnet_deploy(paths):
             '--outfile.l1', outfile_l1,
         ], cwd=paths.op_node_dir)
 
+    input('PAUSING! You can now make modifications to L1 Genesis. (Press Enter to continue)')
+
     log.info('Starting L1.')
     run_command(['docker-compose', 'up', '-d', 'l1'], cwd=paths.ops_bedrock_dir, env={
         'PWD': paths.ops_bedrock_dir
