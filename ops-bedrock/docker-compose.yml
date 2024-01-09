@@ -15,6 +15,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.l1
+    environment:
+      BLOCK_SIGNER_PRIVATE_KEY: "${L1_BLOCK_SIGNER_PRIVATE_KEY}"
+      BLOCK_SIGNER_ADDRESS: "${L1_BLOCK_SIGNER_ADDRESS}"
     ports:
       - "8545:8545"
       - "8546:8546"
@@ -55,7 +58,7 @@ services:
       --sequencer.enabled
       --sequencer.l1-confs=0
       --verifier.l1-confs=0
-      --p2p.sequencer.key=8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba
+      --p2p.sequencer.key="${OP_NODE_P2P_SEQUENCER_KEY:-"8b3a350cf5c34c9194ca85829a2df0ec3153be0318b5e2d3348e872092edffba"}"
       --rollup.config=/rollup.json
       --rpc.addr=0.0.0.0
       --rpc.port=8545
@@ -99,7 +102,7 @@ services:
       OP_PROPOSER_ROLLUP_RPC: http://op-node:8545
       OP_PROPOSER_POLL_INTERVAL: 1s
       OP_PROPOSER_NUM_CONFIRMATIONS: 1
-      OP_PROPOSER_MNEMONIC: test test test test test test test test test test test junk
+      OP_PROPOSER_MNEMONIC: "${OP_PROPOSER_MNEMONIC:-test test test test test test test test test test test junk}"
       OP_PROPOSER_L2_OUTPUT_HD_PATH: "m/44'/60'/0'/0/1"
       OP_PROPOSER_L2OO_ADDRESS: "${L2OO_ADDRESS}"
       OP_PROPOSER_PPROF_ENABLED: "true"
@@ -126,7 +129,7 @@ services:
       OP_BATCHER_SUB_SAFETY_MARGIN: 4 # SWS is 15, ChannelTimeout is 40
       OP_BATCHER_POLL_INTERVAL: 1s
       OP_BATCHER_NUM_CONFIRMATIONS: 1
-      OP_BATCHER_MNEMONIC: test test test test test test test test test test test junk
+      OP_BATCHER_MNEMONIC: "${OP_BATCHER_MNEMONIC:-test test test test test test test test test test test junk}"
       OP_BATCHER_SEQUENCER_HD_PATH: "m/44'/60'/0'/0/2"
       OP_BATCHER_PPROF_ENABLED: "true"
       OP_BATCHER_METRICS_ENABLED: "true"
